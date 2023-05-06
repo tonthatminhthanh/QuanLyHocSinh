@@ -1,0 +1,136 @@
+﻿@model QLHocSinhHVT.Models.HOCSINH
+
+@{
+    ViewBag.Title = "Thông tin học sinh";
+}
+
+<h2>Thông tin học sinh</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhHS)
+        </dt>
+
+        <dd>
+            <img src="/Images/@Model.AnhHS" width="75" height="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoHS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoHS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @if (Model.GioiTinh)
+            {
+                <div>Nam</div>
+            }
+            else
+            {
+                <div>Nữ</div>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Model.NgaySinh.Day / @Model.NgaySinh.Month / @Model.NgaySinh.Year
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueQuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TonGiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TonGiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuocTich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuocTich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOP.MaNganh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOP.MaNganh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOP.MaLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOP.MaLop)
+        </dd>
+
+        <dt>
+            Họ tên phụ huynh
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHUHUYNH.HoPH) @Html.DisplayFor(model => model.PHUHUYNH.TenPH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHS }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

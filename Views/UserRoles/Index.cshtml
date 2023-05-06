@@ -1,0 +1,34 @@
+﻿@model List<QLHocSinhHVT.Models.UserRolesViewModel>
+@{
+    ViewBag.Title = "Index";
+    int i = 0;
+}
+
+<h2>Danh sách người quản lý</h2>
+
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Quyền sử dụng</th>
+    </tr>
+    @foreach(var user in Model)
+    {
+        i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@user.userId</td>
+                    <td>@user.email</td>
+                    <td>
+                        @foreach(var role in user.roles)
+                {
+                    @String.Concat(role," | ")
+                }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa đổi","Manage","UserRoles", new {userId = user.userId}, null)
+                    </td>
+                </tr>
+            }
+</table>
