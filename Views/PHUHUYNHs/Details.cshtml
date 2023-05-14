@@ -1,0 +1,57 @@
+﻿@model QuanLyHocSinh.Models.PHUHUYNH
+
+@{
+    ViewBag.Title = "Thông tin chi tiết";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoPH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoPH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenPH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenPH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgheNghiep)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa đổi", "Edit", new { id = Model.MaPH }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

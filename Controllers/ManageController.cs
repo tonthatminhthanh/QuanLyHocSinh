@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using QLHocSinhHVT.Models;
+using QuanLyHocSinh.Models;
 
-namespace QLHocSinhHVT.Controllers
+namespace QuanLyHocSinh.Controllers
 {
     [Authorize]
     public class ManageController : Controller

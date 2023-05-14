@@ -1,6 +1,7 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using QuanLyHocSinh.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

@@ -1,16 +1,84 @@
-﻿@model IEnumerable<QLHocSinhHVT.Models.HOCSINH>
-
+﻿@model IEnumerable<QuanLyHocSinh.Models.HOCSINH>
+<link rel="stylesheet" href="~/Content/themes/base/all.css" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
 @{
-    ViewBag.Title = "Danh sách học sinh";
+    ViewBag.Title = "Danh sách các học sinh";
+    int i = 0;
 }
 
-<h2>Danh sách học sinh</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Thêm học sinh", "Create")
 </p>
+<div>
+    @using (Html.BeginForm("Index", "HOCSINHs", FormMethod.Post))
+    {
+        <dl>
+            <dt><label for="id" class="control-label col-md-2">Mã số học sinh</label></dt>
+            <dd><input type="search" name="id" class="form-control" value="@ViewBag.MaHS" /></dd>
+            <dt><label for="hoTenHS" class="control-label col-md-2">Họ tên học sinh</label></dt>
+            <dd><input type="search" name="hoTenHS" class="form-control" value="@ViewBag.HoTenHS" /></dd>
+            <dt><label for="maLop" class="control-label col-md-2">Lớp học</label></dt>
+            <dd>
+                <div class="col-md-10">
+                    @Html.DropDownList("maLop", (SelectList)ViewBag.MaLop, "Tất cả", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </dd>
+            <dt><label for="maPH" class="control-label col-md-2">Phụ huynh</label></dt>
+            <dd><input type="text" id="txtPH" class="form-control" value="@ViewBag.MaPH" /></dd>
+            <input type="hidden" name="maPH" id="txtMaPH" />
+        </dl>
+        <script>
+            $(function () {
+                $("#txtPH").autocomplete({
+                    source: "/HOCSINHs/GetPhuHuynh",
+                    minLength: 2,
+                    select: function (event, ui) {
+                        $("#txtPH").val(ui.item.label);
+                        $("#txtMaPH").val(ui.item.value);
+                        return false;
+                    }
+                }).autocomplete("instance")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .append("<div>" + item.label + "</div>")
+                        .appendTo(ul);
+                };
+            });
+        </script>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tìm kiếm" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    }
+    @using (Html.BeginForm("ExportListHocSinhToExcel", "HOCSINHs", FormMethod.Post))
+    {
+        for (int j = 0; j < Model.Count(); j++)
+        {
+            @Html.HiddenFor(m => m.ToList()[j].MaHS);
+            @Html.HiddenFor(m => m.ToList()[j].HoHS);
+            @Html.HiddenFor(m => m.ToList()[j].TenHS);
+            @Html.HiddenFor(m => m.ToList()[j].GioiTinh);
+            @Html.HiddenFor(m => m.ToList()[j].MaLop);
+            @Html.HiddenFor(m => m.ToList()[j].MaPH);
+            @Html.HiddenFor(m => m.ToList()[j].NgaySinh);
+            @Html.HiddenFor(m => m.ToList()[j].SDT);
+            @Html.HiddenFor(m => m.ToList()[j].Email);
+            @Html.HiddenFor(m => m.ToList()[j].DiaChi);
+            @Html.HiddenFor(m => m.ToList()[j].MaQuocTich);
+            @Html.HiddenFor(m => m.ToList()[j].MaTonGiao);
+            @Html.HiddenFor(m => m.ToList()[j].QueQuan);
+        }
+        <input type="submit" value="Xuất file Excel" class="btn btn-outline-dark" />
+    }
+</div>
 <table class="table">
     <tr>
+        <th>
+            STT
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.MaHS)
         </th>
@@ -30,6 +98,9 @@
             @Html.DisplayNameFor(model => model.NgaySinh)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.LOP.MaLop)
         </th>
         <th>
@@ -38,45 +109,57 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaHS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoHS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenHS)
-        </td>
-        <td>
-            <img src="/Images/@item.AnhHS" width="75" height="100" />
-        </td>
-        <td>
-            @if (item.GioiTinh)
-            {
-                <div>Nam</div>
-            }
-            else
-            {
-                <div>Nữ</div>
-            }
-        </td>
-        <td>
-            @item.NgaySinh.Day / @item.NgaySinh.Month / @item.NgaySinh.Year
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LOP.MaLop)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PHUHUYNH.HoPH) @Html.DisplayFor(modelItem => item.PHUHUYNH.TenPH)
-        </td>
-        <td>
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MaHS }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHS }) |
-            @Html.ActionLink("Xoá", "Delete", new { id = item.MaHS })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoHS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenHS)
+            </td>
+            <td>
+                <img src="/Images/@item.AnhHS" width="75" height="100" />
+            </td>
+            <td>
+                @if (item.GioiTinh)
+                {
+                    <div>Nam</div>
+                }
+                else
+                {
+                    <div>Nữ</div>
+                }
+            </td>
+            <td>
+                @item.NgaySinh.Day/@item.NgaySinh.Month/@item.NgaySinh.Year
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOP.MaLop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PHUHUYNH.HoPH) @Html.DisplayFor(modelItem => item.PHUHUYNH.TenPH)
+            </td>
+            <td>
+                @Html.ActionLink("Kế hoạch học tập", "Index", "CTHPs", new { maHS = item.MaHS}, new {}) |
+                @Html.ActionLink("Sửa đổi", "Edit", new { id = item.MaHS }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHS }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaHS })
+            </td>
+        </tr>
+    }
 
 </table>
+<div>
+    Tổng số học sinh: @Model.Count()
+</div>

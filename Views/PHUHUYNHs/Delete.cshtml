@@ -1,0 +1,63 @@
+﻿@model QuanLyHocSinh.Models.PHUHUYNH
+
+@{
+    ViewBag.Title = "Xóa phụ huynh";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Bạn có chắc là bạn muốn xóa phụ huynh @Model.HoPH @Model.TenPH?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoPH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoPH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenPH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenPH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgheNghiep)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

@@ -1,10 +1,10 @@
-﻿@model QLHocSinhHVT.Models.HOCSINH
+﻿@model QuanLyHocSinh.Models.HOCSINH
 
 @{
-    ViewBag.Title = "Thông tin học sinh";
+    ViewBag.Title = "Details";
 }
 
-<h2>Thông tin học sinh</h2>
+<h2>Chi tiết học sinh @Html.DisplayFor(model => model.HoHS) @Html.DisplayFor(model => model.TenHS)</h2>
 
 <div>
     <hr />
@@ -16,21 +16,12 @@
         <dd>
             <img src="/Images/@Model.AnhHS" width="75" height="100" />
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.HoHS)
+            Họ tên học sinh
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HoHS)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenHS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenHS)
+            @Html.DisplayFor(model => model.HoHS) @Html.DisplayFor(model => model.TenHS)
         </dd>
 
         <dt>
@@ -89,30 +80,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TonGiao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TonGiao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuocTich)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuocTich)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LOP.MaNganh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LOP.MaNganh)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.LOP.MaLop)
         </dt>
 
@@ -128,9 +95,25 @@
             @Html.DisplayFor(model => model.PHUHUYNH.HoPH) @Html.DisplayFor(model => model.PHUHUYNH.TenPH)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.QUOCTICH.TenQuocTich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUOCTICH.TenQuocTich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TONGIAO.TenTonGiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TONGIAO.TenTonGiao)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHS }) |
+    @Html.ActionLink("Sửa đổi", "Edit", new { id = Model.MaHS }) |
     @Html.ActionLink("Quay lại", "Index")
 </p>

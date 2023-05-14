@@ -1,0 +1,57 @@
+﻿@model IEnumerable<QuanLyHocSinh.Models.PHUHUYNH>
+
+@{
+    ViewBag.Title = "Danh sách phụ huynh";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Thêm phụ huynh", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoPH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenPH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoPH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenPH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgheNghiep)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa đổi", "Edit", new { id=item.MaPH }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaPH }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaPH })
+        </td>
+    </tr>
+}
+
+</table>

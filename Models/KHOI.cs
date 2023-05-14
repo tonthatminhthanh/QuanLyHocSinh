@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLHocSinhHVT.Models
+namespace QuanLyHocSinh.Models
 {
     using System;
     using System.Collections.Generic;

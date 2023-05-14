@@ -1,20 +1,21 @@
-﻿@model QLHocSinhHVT.Models.HOCSINH
+﻿@model QuanLyHocSinh.Models.HOCSINH
 
 @{
     ViewBag.Title = "Thêm học sinh mới";
 }
-
+<link rel="stylesheet" href="~/Content/themes/base/all.css" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
 <h2>Thêm học sinh mới</h2>
 
 
-@using (Html.BeginForm("Create","HOCSINHs",FormMethod.Post, new {enctype = "multipart/form-data"})) 
+@using (Html.BeginForm("Create", "HOCSINHs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-group">
             @Html.LabelFor(model => model.HoHS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -41,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                Nữ <input type="radio" name="GioiTinh" value="false" required /> Nam <input type="radio" name="GioiTinh" value="true" required />
+                Nam <input type="radio" name="GioiTinh" value="true" required /> Nữ <input type="radio" name="GioiTinh" value="false" required />
             </div>
         </div>
 
@@ -56,9 +57,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaPH, "Phụ huynh", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MaPH", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaPH, "", new { @class = "text-danger" })
+                <div>Chưa có phụ huynh trong danh sách? <a href="@Url.Action("Index", "PHUHUYNHs")" target="_blank">Quản lý phụ huynh</a></div>
+                <input type="text" id="txtPH" class="form-control" />
+               @Html.HiddenFor(model => model.MaPH, new { id = "txtMaPH" })
+               @Html.ValidationMessageFor(model => model.MaPH, "Vui lòng chọn phụ huynh thay vì nhập trực tiếp!", new { @class = "text-danger" })
             </div>
+            <script>
+                $(function () {
+                    $("#txtPH").autocomplete({
+                        source: "/HOCSINHs/GetPhuHuynh",
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $("#txtPH").val(ui.item.label);
+                            $("#txtMaPH").val(ui.item.value);
+                            return false;
+                        }
+                    }).autocomplete("instance")._renderItem = function(ul, item) {
+                        return $("<li>")
+                            .append("<div>" + item.label + "</div>")
+                            .appendTo(ul);
+                    };
+                });
+            </script>
         </div>
 
         <div class="form-group">
@@ -101,24 +121,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TonGiao, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaTonGiao, "Tôn giáo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TonGiao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TonGiao, "", new { @class = "text-danger" })
+                @Html.DropDownList("MaTonGiao", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaTonGiao, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.QuocTich, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaQuocTich, "Quốc tịch", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.QuocTich, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuocTich, "", new { @class = "text-danger" })
+                @Html.DropDownList("MaQuocTich", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaQuocTich, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm học sinh" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-outline-dark" />
             </div>
         </div>
     </div>

@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using QLHocSinhHVT.Models;
+using QuanLyHocSinh.Models;
 
-namespace QLHocSinhHVT
+namespace QuanLyHocSinh
 {
     public class EmailService : IIdentityMessageService
     {

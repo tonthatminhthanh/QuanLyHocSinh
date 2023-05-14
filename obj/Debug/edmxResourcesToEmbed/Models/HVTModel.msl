@@ -25,6 +25,8 @@
     <EntitySetMapping Name="HOCPHIs">
       <EntityTypeMapping TypeName="QLHSHVTModel.HOCPHI">
         <MappingFragment StoreEntitySet="HOCPHI">
+          <ScalarProperty Name="NgayDongTien" ColumnName="NgayDongTien" />
+          <ScalarProperty Name="MaLHP" ColumnName="MaLHP" />
           <ScalarProperty Name="MaHocPhi" ColumnName="MaHocPhi" />
           <ScalarProperty Name="MaNH" ColumnName="MaNH" />
           <ScalarProperty Name="MaHS" ColumnName="MaHS" />
@@ -48,8 +50,8 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
           <ScalarProperty Name="QueQuan" ColumnName="QueQuan" />
-          <ScalarProperty Name="TonGiao" ColumnName="TonGiao" />
-          <ScalarProperty Name="QuocTich" ColumnName="QuocTich" />
+          <ScalarProperty Name="MaTonGiao" ColumnName="MaTonGiao" />
+          <ScalarProperty Name="MaQuocTich" ColumnName="MaQuocTich" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -121,12 +123,37 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="QUOCTICHes">
+      <EntityTypeMapping TypeName="QLHSHVTModel.QUOCTICH">
+        <MappingFragment StoreEntitySet="QUOCTICH">
+          <ScalarProperty Name="MaQuocTich" ColumnName="MaQuocTich" />
+          <ScalarProperty Name="TenQuocTich" ColumnName="TenQuocTich" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="THAMSOes">
       <EntityTypeMapping TypeName="QLHSHVTModel.THAMSO">
         <MappingFragment StoreEntitySet="THAMSO">
           <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
           <ScalarProperty Name="HocPhiToiThieu" ColumnName="HocPhiToiThieu" />
           <ScalarProperty Name="HocPhiToiDa" ColumnName="HocPhiToiDa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TONGIAOs">
+      <EntityTypeMapping TypeName="QLHSHVTModel.TONGIAO">
+        <MappingFragment StoreEntitySet="TONGIAO">
+          <ScalarProperty Name="MaTonGiao" ColumnName="MaTonGiao" />
+          <ScalarProperty Name="TenTonGiao" ColumnName="TenTonGiao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIHOCPHIs">
+      <EntityTypeMapping TypeName="QLHSHVTModel.LOAIHOCPHI">
+        <MappingFragment StoreEntitySet="LOAIHOCPHI">
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="TenLHP" ColumnName="TenLHP" />
+          <ScalarProperty Name="MaLHP" ColumnName="MaLHP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

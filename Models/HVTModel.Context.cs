@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLHocSinhHVT.Models
+namespace QuanLyHocSinh.Models
 {
     using System;
     using System.Data.Entity;
@@ -36,6 +36,9 @@ namespace QLHocSinhHVT.Models
         public virtual DbSet<NAMHOC> NAMHOCs { get; set; }
         public virtual DbSet<NGANH> NGANHs { get; set; }
         public virtual DbSet<PHUHUYNH> PHUHUYNHs { get; set; }
+        public virtual DbSet<QUOCTICH> QUOCTICHes { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
+        public virtual DbSet<TONGIAO> TONGIAOs { get; set; }
+        public virtual DbSet<LOAIHOCPHI> LOAIHOCPHIs { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model QLHocSinhHVT.Models.RoleSelectionModel
+﻿@model QuanLyHocSinh.Models.RoleSelectionModel
 
 <h2>Thông tin vai trò của @Model.user.email</h2>
 
@@ -18,7 +18,7 @@
         @Html.HiddenFor(m => m.roles[i].RoleName)
         @Model.roles[i].RoleName
         <input type="checkbox" name="roles[@i].selected" value="true" @(Model.roles[i].selected ? "checked" : "") />
-        <br />
     }
+    <br />
     <input type="submit" class="btn btn-primary" value="Sửa đổi" />
 }

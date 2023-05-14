@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLHSHVTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLHSHVTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTHP">
           <Key>
             <PropertyRef Name="MaCTHP" />
@@ -33,6 +33,8 @@
           <Property Name="MaHS" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="DONGIA" Type="int" Nullable="false" />
           <Property Name="NgayThongBao" Type="date" Nullable="false" />
+          <Property Name="MaLHP" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="NgayDongTien" Type="date" />
         </EntityType>
         <EntityType Name="HOCSINH">
           <Key>
@@ -50,8 +52,8 @@
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="QueQuan" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TonGiao" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="QuocTich" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaTonGiao" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MaQuocTich" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="KETQUA">
           <Key>
@@ -70,6 +72,14 @@
           </Key>
           <Property Name="MaKhoi" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="TenKhoi" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOAIHOCPHI">
+          <Key>
+            <PropertyRef Name="MaLHP" />
+          </Key>
+          <Property Name="MaLHP" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TenLHP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DONGIA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LOP">
           <Key>
@@ -114,6 +124,13 @@
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NgheNghiep" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="QUOCTICH">
+          <Key>
+            <PropertyRef Name="MaQuocTich" />
+          </Key>
+          <Property Name="MaQuocTich" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="TenQuocTich" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="THAMSO">
           <Key>
             <PropertyRef Name="MaThamSo" />
@@ -122,7 +139,14 @@
           <Property Name="HocPhiToiThieu" Type="int" Nullable="false" />
           <Property Name="HocPhiToiDa" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CTHP__MaGV__5441852A">
+        <EntityType Name="TONGIAO">
+          <Key>
+            <PropertyRef Name="MaTonGiao" />
+          </Key>
+          <Property Name="MaTonGiao" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TenTonGiao" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CTHP__MaGV__59FA5E80">
           <End Role="GIAOVIEN" Type="Self.GIAOVIEN" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -134,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaHS__5165187F">
+        <Association Name="FK__CTHP__MaHS__571DF1D5">
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -146,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaMH__52593CB8">
+        <Association Name="FK__CTHP__MaMH__5812160E">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -158,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaNH__534D60F1">
+        <Association Name="FK__CTHP__MaNH__59063A47">
           <End Role="NAMHOC" Type="Self.NAMHOC" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -170,7 +194,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCPHI__MaHS__4E88ABD4">
+        <Association Name="FK__HOCPHI__MaHS__5441852A">
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="1" />
           <End Role="HOCPHI" Type="Self.HOCPHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,7 +206,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCPHI__MaNH__4D94879B">
+        <Association Name="FK__HOCPHI__MaLHP__6FE99F9F">
+          <End Role="LOAIHOCPHI" Type="Self.LOAIHOCPHI" Multiplicity="1" />
+          <End Role="HOCPHI" Type="Self.HOCPHI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIHOCPHI">
+              <PropertyRef Name="MaLHP" />
+            </Principal>
+            <Dependent Role="HOCPHI">
+              <PropertyRef Name="MaLHP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCPHI__MaNH__534D60F1">
           <End Role="NAMHOC" Type="Self.NAMHOC" Multiplicity="1" />
           <End Role="HOCPHI" Type="Self.HOCPHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -194,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCSINH__MaLop__440B1D61">
+        <Association Name="FK__HOCSINH__MaLop__47DBAE45">
           <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -206,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCSINH__MaPH__44FF419A">
+        <Association Name="FK__HOCSINH__MaPH__48CFD27E">
           <End Role="PHUHUYNH" Type="Self.PHUHUYNH" Multiplicity="1" />
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,7 +254,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KETQUA__MaCTHP__571DF1D5">
+        <Association Name="FK__HOCSINH__MaQuocT__4AB81AF0">
+          <End Role="QUOCTICH" Type="Self.QUOCTICH" Multiplicity="1" />
+          <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUOCTICH">
+              <PropertyRef Name="MaQuocTich" />
+            </Principal>
+            <Dependent Role="HOCSINH">
+              <PropertyRef Name="MaQuocTich" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCSINH__MaTonGi__49C3F6B7">
+          <End Role="TONGIAO" Type="Self.TONGIAO" Multiplicity="1" />
+          <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TONGIAO">
+              <PropertyRef Name="MaTonGiao" />
+            </Principal>
+            <Dependent Role="HOCSINH">
+              <PropertyRef Name="MaTonGiao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KETQUA__MaCTHP__5CD6CB2B">
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="0..1" />
           <End Role="KETQUA" Type="Self.KETQUA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -242,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MONHOC__MaKhoi__48CFD27E">
+        <Association Name="FK__MONHOC__MaKhoi__4E88ABD4">
           <End Role="KHOI" Type="Self.KHOI" Multiplicity="1" />
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -254,7 +314,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MONHOC__MaNganh__47DBAE45">
+        <Association Name="FK__MONHOC__MaNganh__4D94879B">
           <End Role="NGANH" Type="Self.NGANH" Multiplicity="1" />
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -273,45 +333,60 @@
           <EntitySet Name="HOCSINH" EntityType="Self.HOCSINH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KETQUA" EntityType="Self.KETQUA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHOI" EntityType="Self.KHOI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAIHOCPHI" EntityType="Self.LOAIHOCPHI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOP" EntityType="Self.LOP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MONHOC" EntityType="Self.MONHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NAMHOC" EntityType="Self.NAMHOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NGANH" EntityType="Self.NGANH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHUHUYNH" EntityType="Self.PHUHUYNH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUOCTICH" EntityType="Self.QUOCTICH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CTHP__MaGV__5441852A" Association="Self.FK__CTHP__MaGV__5441852A">
+          <EntitySet Name="TONGIAO" EntityType="Self.TONGIAO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CTHP__MaGV__59FA5E80" Association="Self.FK__CTHP__MaGV__59FA5E80">
             <End Role="GIAOVIEN" EntitySet="GIAOVIEN" />
             <End Role="CTHP" EntitySet="CTHP" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaHS__5165187F" Association="Self.FK__CTHP__MaHS__5165187F">
+          <AssociationSet Name="FK__CTHP__MaHS__571DF1D5" Association="Self.FK__CTHP__MaHS__571DF1D5">
             <End Role="HOCSINH" EntitySet="HOCSINH" />
             <End Role="CTHP" EntitySet="CTHP" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaMH__52593CB8" Association="Self.FK__CTHP__MaMH__52593CB8">
+          <AssociationSet Name="FK__CTHP__MaMH__5812160E" Association="Self.FK__CTHP__MaMH__5812160E">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CTHP" EntitySet="CTHP" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaNH__534D60F1" Association="Self.FK__CTHP__MaNH__534D60F1">
+          <AssociationSet Name="FK__CTHP__MaNH__59063A47" Association="Self.FK__CTHP__MaNH__59063A47">
             <End Role="NAMHOC" EntitySet="NAMHOC" />
             <End Role="CTHP" EntitySet="CTHP" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCPHI__MaHS__4E88ABD4" Association="Self.FK__HOCPHI__MaHS__4E88ABD4">
+          <AssociationSet Name="FK__HOCPHI__MaHS__5441852A" Association="Self.FK__HOCPHI__MaHS__5441852A">
             <End Role="HOCSINH" EntitySet="HOCSINH" />
             <End Role="HOCPHI" EntitySet="HOCPHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCPHI__MaNH__4D94879B" Association="Self.FK__HOCPHI__MaNH__4D94879B">
+          <AssociationSet Name="FK__HOCPHI__MaLHP__6FE99F9F" Association="Self.FK__HOCPHI__MaLHP__6FE99F9F">
+            <End Role="LOAIHOCPHI" EntitySet="LOAIHOCPHI" />
+            <End Role="HOCPHI" EntitySet="HOCPHI" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCPHI__MaNH__534D60F1" Association="Self.FK__HOCPHI__MaNH__534D60F1">
             <End Role="NAMHOC" EntitySet="NAMHOC" />
             <End Role="HOCPHI" EntitySet="HOCPHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCSINH__MaLop__440B1D61" Association="Self.FK__HOCSINH__MaLop__440B1D61">
+          <AssociationSet Name="FK__HOCSINH__MaLop__47DBAE45" Association="Self.FK__HOCSINH__MaLop__47DBAE45">
             <End Role="LOP" EntitySet="LOP" />
             <End Role="HOCSINH" EntitySet="HOCSINH" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCSINH__MaPH__44FF419A" Association="Self.FK__HOCSINH__MaPH__44FF419A">
+          <AssociationSet Name="FK__HOCSINH__MaPH__48CFD27E" Association="Self.FK__HOCSINH__MaPH__48CFD27E">
             <End Role="PHUHUYNH" EntitySet="PHUHUYNH" />
             <End Role="HOCSINH" EntitySet="HOCSINH" />
           </AssociationSet>
-          <AssociationSet Name="FK__KETQUA__MaCTHP__571DF1D5" Association="Self.FK__KETQUA__MaCTHP__571DF1D5">
+          <AssociationSet Name="FK__HOCSINH__MaQuocT__4AB81AF0" Association="Self.FK__HOCSINH__MaQuocT__4AB81AF0">
+            <End Role="QUOCTICH" EntitySet="QUOCTICH" />
+            <End Role="HOCSINH" EntitySet="HOCSINH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCSINH__MaTonGi__49C3F6B7" Association="Self.FK__HOCSINH__MaTonGi__49C3F6B7">
+            <End Role="TONGIAO" EntitySet="TONGIAO" />
+            <End Role="HOCSINH" EntitySet="HOCSINH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KETQUA__MaCTHP__5CD6CB2B" Association="Self.FK__KETQUA__MaCTHP__5CD6CB2B">
             <End Role="CTHP" EntitySet="CTHP" />
             <End Role="KETQUA" EntitySet="KETQUA" />
           </AssociationSet>
@@ -319,17 +394,16 @@
             <End Role="GIAOVIEN" EntitySet="GIAOVIEN" />
             <End Role="LOP" EntitySet="LOP" />
           </AssociationSet>
-          <AssociationSet Name="FK__MONHOC__MaKhoi__48CFD27E" Association="Self.FK__MONHOC__MaKhoi__48CFD27E">
+          <AssociationSet Name="FK__MONHOC__MaKhoi__4E88ABD4" Association="Self.FK__MONHOC__MaKhoi__4E88ABD4">
             <End Role="KHOI" EntitySet="KHOI" />
             <End Role="MONHOC" EntitySet="MONHOC" />
           </AssociationSet>
-          <AssociationSet Name="FK__MONHOC__MaNganh__47DBAE45" Association="Self.FK__MONHOC__MaNganh__47DBAE45">
+          <AssociationSet Name="FK__MONHOC__MaNganh__4D94879B" Association="Self.FK__MONHOC__MaNganh__4D94879B">
             <End Role="NGANH" EntitySet="NGANH" />
             <End Role="MONHOC" EntitySet="MONHOC" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLHSHVTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -342,11 +416,11 @@
           <Property Name="MaMH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaNH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaGV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="GIAOVIEN" Relationship="Self.FK__CTHP__MaGV__5441852A" FromRole="CTHP" ToRole="GIAOVIEN" />
-          <NavigationProperty Name="HOCSINH" Relationship="Self.FK__CTHP__MaHS__5165187F" FromRole="CTHP" ToRole="HOCSINH" />
-          <NavigationProperty Name="MONHOC" Relationship="Self.FK__CTHP__MaMH__52593CB8" FromRole="CTHP" ToRole="MONHOC" />
-          <NavigationProperty Name="NAMHOC" Relationship="Self.FK__CTHP__MaNH__534D60F1" FromRole="CTHP" ToRole="NAMHOC" />
-          <NavigationProperty Name="KETQUAs" Relationship="Self.FK__KETQUA__MaCTHP__571DF1D5" FromRole="CTHP" ToRole="KETQUA" />
+          <NavigationProperty Name="GIAOVIEN" Relationship="Self.FK__CTHP__MaGV__59FA5E80" FromRole="CTHP" ToRole="GIAOVIEN" />
+          <NavigationProperty Name="HOCSINH" Relationship="Self.FK__CTHP__MaHS__571DF1D5" FromRole="CTHP" ToRole="HOCSINH" />
+          <NavigationProperty Name="MONHOC" Relationship="Self.FK__CTHP__MaMH__5812160E" FromRole="CTHP" ToRole="MONHOC" />
+          <NavigationProperty Name="NAMHOC" Relationship="Self.FK__CTHP__MaNH__59063A47" FromRole="CTHP" ToRole="NAMHOC" />
+          <NavigationProperty Name="KETQUAs" Relationship="Self.FK__KETQUA__MaCTHP__5CD6CB2B" FromRole="CTHP" ToRole="KETQUA" />
         </EntityType>
         <EntityType Name="GIAOVIEN">
           <Key>
@@ -356,7 +430,7 @@
           <Property Name="HoGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GioiTinh" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaGV__5441852A" FromRole="GIAOVIEN" ToRole="CTHP" />
+          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaGV__59FA5E80" FromRole="GIAOVIEN" ToRole="CTHP" />
           <NavigationProperty Name="LOPs" Relationship="Self.FK__LOP__MaGVCN__3F466844" FromRole="GIAOVIEN" ToRole="LOP" />
         </EntityType>
         <EntityType Name="HOCPHI">
@@ -368,8 +442,11 @@
           <Property Name="MaHS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DONGIA" Type="Int32" Nullable="false" />
           <Property Name="NgayThongBao" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="HOCSINH" Relationship="Self.FK__HOCPHI__MaHS__4E88ABD4" FromRole="HOCPHI" ToRole="HOCSINH" />
-          <NavigationProperty Name="NAMHOC" Relationship="Self.FK__HOCPHI__MaNH__4D94879B" FromRole="HOCPHI" ToRole="NAMHOC" />
+          <NavigationProperty Name="HOCSINH" Relationship="Self.FK__HOCPHI__MaHS__5441852A" FromRole="HOCPHI" ToRole="HOCSINH" />
+          <NavigationProperty Name="NAMHOC" Relationship="Self.FK__HOCPHI__MaNH__534D60F1" FromRole="HOCPHI" ToRole="NAMHOC" />
+          <Property Name="MaLHP" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LOAIHOCPHI" Relationship="QLHSHVTModel.FK__HOCPHI__MaLHP__6FE99F9F" FromRole="HOCPHI" ToRole="LOAIHOCPHI" />
+          <Property Name="NgayDongTien" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="HOCSINH">
           <Key>
@@ -387,12 +464,14 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="QueQuan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TonGiao" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="QuocTich" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaHS__5165187F" FromRole="HOCSINH" ToRole="CTHP" />
-          <NavigationProperty Name="HOCPHIs" Relationship="Self.FK__HOCPHI__MaHS__4E88ABD4" FromRole="HOCSINH" ToRole="HOCPHI" />
-          <NavigationProperty Name="LOP" Relationship="Self.FK__HOCSINH__MaLop__440B1D61" FromRole="HOCSINH" ToRole="LOP" />
-          <NavigationProperty Name="PHUHUYNH" Relationship="Self.FK__HOCSINH__MaPH__44FF419A" FromRole="HOCSINH" ToRole="PHUHUYNH" />
+          <Property Name="MaTonGiao" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaQuocTich" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaHS__571DF1D5" FromRole="HOCSINH" ToRole="CTHP" />
+          <NavigationProperty Name="HOCPHIs" Relationship="Self.FK__HOCPHI__MaHS__5441852A" FromRole="HOCSINH" ToRole="HOCPHI" />
+          <NavigationProperty Name="LOP" Relationship="Self.FK__HOCSINH__MaLop__47DBAE45" FromRole="HOCSINH" ToRole="LOP" />
+          <NavigationProperty Name="PHUHUYNH" Relationship="Self.FK__HOCSINH__MaPH__48CFD27E" FromRole="HOCSINH" ToRole="PHUHUYNH" />
+          <NavigationProperty Name="QUOCTICH" Relationship="Self.FK__HOCSINH__MaQuocT__4AB81AF0" FromRole="HOCSINH" ToRole="QUOCTICH" />
+          <NavigationProperty Name="TONGIAO" Relationship="Self.FK__HOCSINH__MaTonGi__49C3F6B7" FromRole="HOCSINH" ToRole="TONGIAO" />
         </EntityType>
         <EntityType Name="KETQUA">
           <Key>
@@ -404,7 +483,7 @@
           <Property Name="Diem1T" Type="Double" Nullable="false" />
           <Property Name="DiemKT" Type="Double" Nullable="false" />
           <Property Name="DiemTB" Type="Double" Nullable="false" />
-          <NavigationProperty Name="CTHP" Relationship="Self.FK__KETQUA__MaCTHP__571DF1D5" FromRole="KETQUA" ToRole="CTHP" />
+          <NavigationProperty Name="CTHP" Relationship="Self.FK__KETQUA__MaCTHP__5CD6CB2B" FromRole="KETQUA" ToRole="CTHP" />
         </EntityType>
         <EntityType Name="KHOI">
           <Key>
@@ -412,7 +491,7 @@
           </Key>
           <Property Name="MaKhoi" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenKhoi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="MONHOCs" Relationship="Self.FK__MONHOC__MaKhoi__48CFD27E" FromRole="KHOI" ToRole="MONHOC" />
+          <NavigationProperty Name="MONHOCs" Relationship="Self.FK__MONHOC__MaKhoi__4E88ABD4" FromRole="KHOI" ToRole="MONHOC" />
         </EntityType>
         <EntityType Name="LOP">
           <Key>
@@ -422,7 +501,7 @@
           <Property Name="MaNganh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaGVCN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GIAOVIEN" Relationship="Self.FK__LOP__MaGVCN__3F466844" FromRole="LOP" ToRole="GIAOVIEN" />
-          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaLop__440B1D61" FromRole="LOP" ToRole="HOCSINH" />
+          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaLop__47DBAE45" FromRole="LOP" ToRole="HOCSINH" />
         </EntityType>
         <EntityType Name="MONHOC">
           <Key>
@@ -432,9 +511,9 @@
           <Property Name="TenMH" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaNganh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaKhoi" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaMH__52593CB8" FromRole="MONHOC" ToRole="CTHP" />
-          <NavigationProperty Name="KHOI" Relationship="Self.FK__MONHOC__MaKhoi__48CFD27E" FromRole="MONHOC" ToRole="KHOI" />
-          <NavigationProperty Name="NGANH" Relationship="Self.FK__MONHOC__MaNganh__47DBAE45" FromRole="MONHOC" ToRole="NGANH" />
+          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaMH__5812160E" FromRole="MONHOC" ToRole="CTHP" />
+          <NavigationProperty Name="KHOI" Relationship="Self.FK__MONHOC__MaKhoi__4E88ABD4" FromRole="MONHOC" ToRole="KHOI" />
+          <NavigationProperty Name="NGANH" Relationship="Self.FK__MONHOC__MaNganh__4D94879B" FromRole="MONHOC" ToRole="NGANH" />
         </EntityType>
         <EntityType Name="NAMHOC">
           <Key>
@@ -443,8 +522,8 @@
           <Property Name="MaNH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NamBatDau" Type="Int32" Nullable="false" />
           <Property Name="NamKetThuc" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaNH__534D60F1" FromRole="NAMHOC" ToRole="CTHP" />
-          <NavigationProperty Name="HOCPHIs" Relationship="Self.FK__HOCPHI__MaNH__4D94879B" FromRole="NAMHOC" ToRole="HOCPHI" />
+          <NavigationProperty Name="CTHPs" Relationship="Self.FK__CTHP__MaNH__59063A47" FromRole="NAMHOC" ToRole="CTHP" />
+          <NavigationProperty Name="HOCPHIs" Relationship="Self.FK__HOCPHI__MaNH__534D60F1" FromRole="NAMHOC" ToRole="HOCPHI" />
         </EntityType>
         <EntityType Name="NGANH">
           <Key>
@@ -452,7 +531,7 @@
           </Key>
           <Property Name="MaNganh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenNganh" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="MONHOCs" Relationship="Self.FK__MONHOC__MaNganh__47DBAE45" FromRole="NGANH" ToRole="MONHOC" />
+          <NavigationProperty Name="MONHOCs" Relationship="Self.FK__MONHOC__MaNganh__4D94879B" FromRole="NGANH" ToRole="MONHOC" />
         </EntityType>
         <EntityType Name="PHUHUYNH">
           <Key>
@@ -464,7 +543,15 @@
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NgheNghiep" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaPH__44FF419A" FromRole="PHUHUYNH" ToRole="HOCSINH" />
+          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaPH__48CFD27E" FromRole="PHUHUYNH" ToRole="HOCSINH" />
+        </EntityType>
+        <EntityType Name="QUOCTICH">
+          <Key>
+            <PropertyRef Name="MaQuocTich" />
+          </Key>
+          <Property Name="MaQuocTich" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenQuocTich" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaQuocT__4AB81AF0" FromRole="QUOCTICH" ToRole="HOCSINH" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
@@ -474,7 +561,15 @@
           <Property Name="HocPhiToiThieu" Type="Int32" Nullable="false" />
           <Property Name="HocPhiToiDa" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CTHP__MaGV__5441852A">
+        <EntityType Name="TONGIAO">
+          <Key>
+            <PropertyRef Name="MaTonGiao" />
+          </Key>
+          <Property Name="MaTonGiao" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenTonGiao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HOCSINHs" Relationship="Self.FK__HOCSINH__MaTonGi__49C3F6B7" FromRole="TONGIAO" ToRole="HOCSINH" />
+        </EntityType>
+        <Association Name="FK__CTHP__MaGV__59FA5E80">
           <End Role="GIAOVIEN" Type="Self.GIAOVIEN" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -486,7 +581,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaHS__5165187F">
+        <Association Name="FK__CTHP__MaHS__571DF1D5">
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -498,7 +593,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaMH__52593CB8">
+        <Association Name="FK__CTHP__MaMH__5812160E">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -510,7 +605,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTHP__MaNH__534D60F1">
+        <Association Name="FK__CTHP__MaNH__59063A47">
           <End Role="NAMHOC" Type="Self.NAMHOC" Multiplicity="1" />
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -522,7 +617,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KETQUA__MaCTHP__571DF1D5">
+        <Association Name="FK__KETQUA__MaCTHP__5CD6CB2B">
           <End Role="CTHP" Type="Self.CTHP" Multiplicity="0..1" />
           <End Role="KETQUA" Type="Self.KETQUA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -546,7 +641,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCPHI__MaHS__4E88ABD4">
+        <Association Name="FK__HOCPHI__MaHS__5441852A">
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="1" />
           <End Role="HOCPHI" Type="Self.HOCPHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -558,7 +653,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCPHI__MaNH__4D94879B">
+        <Association Name="FK__HOCPHI__MaNH__534D60F1">
           <End Role="NAMHOC" Type="Self.NAMHOC" Multiplicity="1" />
           <End Role="HOCPHI" Type="Self.HOCPHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -570,7 +665,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCSINH__MaLop__440B1D61">
+        <Association Name="FK__HOCSINH__MaLop__47DBAE45">
           <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -582,7 +677,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOCSINH__MaPH__44FF419A">
+        <Association Name="FK__HOCSINH__MaPH__48CFD27E">
           <End Role="PHUHUYNH" Type="Self.PHUHUYNH" Multiplicity="1" />
           <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -594,7 +689,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MONHOC__MaKhoi__48CFD27E">
+        <Association Name="FK__HOCSINH__MaQuocT__4AB81AF0">
+          <End Role="QUOCTICH" Type="Self.QUOCTICH" Multiplicity="1" />
+          <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUOCTICH">
+              <PropertyRef Name="MaQuocTich" />
+            </Principal>
+            <Dependent Role="HOCSINH">
+              <PropertyRef Name="MaQuocTich" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCSINH__MaTonGi__49C3F6B7">
+          <End Role="TONGIAO" Type="Self.TONGIAO" Multiplicity="1" />
+          <End Role="HOCSINH" Type="Self.HOCSINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TONGIAO">
+              <PropertyRef Name="MaTonGiao" />
+            </Principal>
+            <Dependent Role="HOCSINH">
+              <PropertyRef Name="MaTonGiao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MONHOC__MaKhoi__4E88ABD4">
           <End Role="KHOI" Type="Self.KHOI" Multiplicity="1" />
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -606,7 +725,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MONHOC__MaNganh__47DBAE45">
+        <Association Name="FK__MONHOC__MaNganh__4D94879B">
           <End Role="NGANH" Type="Self.NGANH" Multiplicity="1" />
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -630,24 +749,26 @@
           <EntitySet Name="NAMHOCs" EntityType="Self.NAMHOC" />
           <EntitySet Name="NGANHs" EntityType="Self.NGANH" />
           <EntitySet Name="PHUHUYNHs" EntityType="Self.PHUHUYNH" />
+          <EntitySet Name="QUOCTICHes" EntityType="Self.QUOCTICH" />
           <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
-          <AssociationSet Name="FK__CTHP__MaGV__5441852A" Association="Self.FK__CTHP__MaGV__5441852A">
+          <EntitySet Name="TONGIAOs" EntityType="Self.TONGIAO" />
+          <AssociationSet Name="FK__CTHP__MaGV__59FA5E80" Association="Self.FK__CTHP__MaGV__59FA5E80">
             <End Role="GIAOVIEN" EntitySet="GIAOVIENs" />
             <End Role="CTHP" EntitySet="CTHPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaHS__5165187F" Association="Self.FK__CTHP__MaHS__5165187F">
+          <AssociationSet Name="FK__CTHP__MaHS__571DF1D5" Association="Self.FK__CTHP__MaHS__571DF1D5">
             <End Role="HOCSINH" EntitySet="HOCSINHs" />
             <End Role="CTHP" EntitySet="CTHPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaMH__52593CB8" Association="Self.FK__CTHP__MaMH__52593CB8">
+          <AssociationSet Name="FK__CTHP__MaMH__5812160E" Association="Self.FK__CTHP__MaMH__5812160E">
             <End Role="MONHOC" EntitySet="MONHOCs" />
             <End Role="CTHP" EntitySet="CTHPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTHP__MaNH__534D60F1" Association="Self.FK__CTHP__MaNH__534D60F1">
+          <AssociationSet Name="FK__CTHP__MaNH__59063A47" Association="Self.FK__CTHP__MaNH__59063A47">
             <End Role="NAMHOC" EntitySet="NAMHOCs" />
             <End Role="CTHP" EntitySet="CTHPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__KETQUA__MaCTHP__571DF1D5" Association="Self.FK__KETQUA__MaCTHP__571DF1D5">
+          <AssociationSet Name="FK__KETQUA__MaCTHP__5CD6CB2B" Association="Self.FK__KETQUA__MaCTHP__5CD6CB2B">
             <End Role="CTHP" EntitySet="CTHPs" />
             <End Role="KETQUA" EntitySet="KETQUAs" />
           </AssociationSet>
@@ -655,31 +776,65 @@
             <End Role="GIAOVIEN" EntitySet="GIAOVIENs" />
             <End Role="LOP" EntitySet="LOPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCPHI__MaHS__4E88ABD4" Association="Self.FK__HOCPHI__MaHS__4E88ABD4">
+          <AssociationSet Name="FK__HOCPHI__MaHS__5441852A" Association="Self.FK__HOCPHI__MaHS__5441852A">
             <End Role="HOCSINH" EntitySet="HOCSINHs" />
             <End Role="HOCPHI" EntitySet="HOCPHIs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCPHI__MaNH__4D94879B" Association="Self.FK__HOCPHI__MaNH__4D94879B">
+          <AssociationSet Name="FK__HOCPHI__MaNH__534D60F1" Association="Self.FK__HOCPHI__MaNH__534D60F1">
             <End Role="NAMHOC" EntitySet="NAMHOCs" />
             <End Role="HOCPHI" EntitySet="HOCPHIs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCSINH__MaLop__440B1D61" Association="Self.FK__HOCSINH__MaLop__440B1D61">
+          <AssociationSet Name="FK__HOCSINH__MaLop__47DBAE45" Association="Self.FK__HOCSINH__MaLop__47DBAE45">
             <End Role="LOP" EntitySet="LOPs" />
             <End Role="HOCSINH" EntitySet="HOCSINHs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOCSINH__MaPH__44FF419A" Association="Self.FK__HOCSINH__MaPH__44FF419A">
+          <AssociationSet Name="FK__HOCSINH__MaPH__48CFD27E" Association="Self.FK__HOCSINH__MaPH__48CFD27E">
             <End Role="PHUHUYNH" EntitySet="PHUHUYNHs" />
             <End Role="HOCSINH" EntitySet="HOCSINHs" />
           </AssociationSet>
-          <AssociationSet Name="FK__MONHOC__MaKhoi__48CFD27E" Association="Self.FK__MONHOC__MaKhoi__48CFD27E">
+          <AssociationSet Name="FK__HOCSINH__MaQuocT__4AB81AF0" Association="Self.FK__HOCSINH__MaQuocT__4AB81AF0">
+            <End Role="QUOCTICH" EntitySet="QUOCTICHes" />
+            <End Role="HOCSINH" EntitySet="HOCSINHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCSINH__MaTonGi__49C3F6B7" Association="Self.FK__HOCSINH__MaTonGi__49C3F6B7">
+            <End Role="TONGIAO" EntitySet="TONGIAOs" />
+            <End Role="HOCSINH" EntitySet="HOCSINHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MONHOC__MaKhoi__4E88ABD4" Association="Self.FK__MONHOC__MaKhoi__4E88ABD4">
             <End Role="KHOI" EntitySet="KHOIs" />
             <End Role="MONHOC" EntitySet="MONHOCs" />
           </AssociationSet>
-          <AssociationSet Name="FK__MONHOC__MaNganh__47DBAE45" Association="Self.FK__MONHOC__MaNganh__47DBAE45">
+          <AssociationSet Name="FK__MONHOC__MaNganh__4D94879B" Association="Self.FK__MONHOC__MaNganh__4D94879B">
             <End Role="NGANH" EntitySet="NGANHs" />
             <End Role="MONHOC" EntitySet="MONHOCs" />
           </AssociationSet>
+          <EntitySet Name="LOAIHOCPHIs" EntityType="QLHSHVTModel.LOAIHOCPHI" />
+          <AssociationSet Name="FK__HOCPHI__MaLHP__6FE99F9F" Association="QLHSHVTModel.FK__HOCPHI__MaLHP__6FE99F9F">
+            <End Role="LOAIHOCPHI" EntitySet="LOAIHOCPHIs" />
+            <End Role="HOCPHI" EntitySet="HOCPHIs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="LOAIHOCPHI">
+          <Key>
+            <PropertyRef Name="MaLHP" />
+          </Key>
+          <Property Name="MaLHP" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TenLHP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DONGIA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HOCPHIs" Relationship="QLHSHVTModel.FK__HOCPHI__MaLHP__6FE99F9F" FromRole="LOAIHOCPHI" ToRole="HOCPHI" />
+        </EntityType>
+        <Association Name="FK__HOCPHI__MaLHP__6FE99F9F">
+          <End Type="QLHSHVTModel.LOAIHOCPHI" Role="LOAIHOCPHI" Multiplicity="1" />
+          <End Type="QLHSHVTModel.HOCPHI" Role="HOCPHI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIHOCPHI">
+              <PropertyRef Name="MaLHP" />
+            </Principal>
+            <Dependent Role="HOCPHI">
+              <PropertyRef Name="MaLHP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -710,6 +865,8 @@
           <EntitySetMapping Name="HOCPHIs">
             <EntityTypeMapping TypeName="QLHSHVTModel.HOCPHI">
               <MappingFragment StoreEntitySet="HOCPHI">
+                <ScalarProperty Name="NgayDongTien" ColumnName="NgayDongTien" />
+                <ScalarProperty Name="MaLHP" ColumnName="MaLHP" />
                 <ScalarProperty Name="MaHocPhi" ColumnName="MaHocPhi" />
                 <ScalarProperty Name="MaNH" ColumnName="MaNH" />
                 <ScalarProperty Name="MaHS" ColumnName="MaHS" />
@@ -733,8 +890,8 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="QueQuan" ColumnName="QueQuan" />
-                <ScalarProperty Name="TonGiao" ColumnName="TonGiao" />
-                <ScalarProperty Name="QuocTich" ColumnName="QuocTich" />
+                <ScalarProperty Name="MaTonGiao" ColumnName="MaTonGiao" />
+                <ScalarProperty Name="MaQuocTich" ColumnName="MaQuocTich" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -806,12 +963,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="QUOCTICHes">
+            <EntityTypeMapping TypeName="QLHSHVTModel.QUOCTICH">
+              <MappingFragment StoreEntitySet="QUOCTICH">
+                <ScalarProperty Name="MaQuocTich" ColumnName="MaQuocTich" />
+                <ScalarProperty Name="TenQuocTich" ColumnName="TenQuocTich" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="QLHSHVTModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
                 <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
                 <ScalarProperty Name="HocPhiToiThieu" ColumnName="HocPhiToiThieu" />
                 <ScalarProperty Name="HocPhiToiDa" ColumnName="HocPhiToiDa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TONGIAOs">
+            <EntityTypeMapping TypeName="QLHSHVTModel.TONGIAO">
+              <MappingFragment StoreEntitySet="TONGIAO">
+                <ScalarProperty Name="MaTonGiao" ColumnName="MaTonGiao" />
+                <ScalarProperty Name="TenTonGiao" ColumnName="TenTonGiao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIHOCPHIs">
+            <EntityTypeMapping TypeName="QLHSHVTModel.LOAIHOCPHI">
+              <MappingFragment StoreEntitySet="LOAIHOCPHI">
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="TenLHP" ColumnName="TenLHP" />
+                <ScalarProperty Name="MaLHP" ColumnName="MaLHP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

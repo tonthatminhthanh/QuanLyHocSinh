@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLHocSinhHVT.Models
+namespace QuanLyHocSinh.Models
 {
     using System;
     using System.Collections.Generic;
@@ -19,8 +19,11 @@ namespace QLHocSinhHVT.Models
         public string MaHS { get; set; }
         public int DONGIA { get; set; }
         public System.DateTime NgayThongBao { get; set; }
+        public string MaLHP { get; set; }
+        public Nullable<System.DateTime> NgayDongTien { get; set; }
     
         public virtual HOCSINH HOCSINH { get; set; }
         public virtual NAMHOC NAMHOC { get; set; }
+        public virtual LOAIHOCPHI LOAIHOCPHI { get; set; }
     }
 }

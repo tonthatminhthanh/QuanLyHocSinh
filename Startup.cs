@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(QLHocSinhHVT.Startup))]
-namespace QLHocSinhHVT
+[assembly: OwinStartupAttribute(typeof(QuanLyHocSinh.Startup))]
+namespace QuanLyHocSinh
 {
     public partial class Startup
     {
