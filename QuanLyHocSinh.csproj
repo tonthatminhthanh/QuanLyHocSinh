@@ -188,6 +188,7 @@
     <Compile Include="Controllers\CTHPsController.cs" />
     <Compile Include="Controllers\HOCSINHsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KETQUAsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NAMHOCsController.cs" />
     <Compile Include="Controllers\PHUHUYNHsController.cs" />
@@ -415,6 +416,10 @@
     <Content Include="Views\CTHPs\Delete.cshtml" />
     <Content Include="Views\CTHPs\Edit.cshtml" />
     <Content Include="Views\CTHPs\Index.cshtml" />
+    <Content Include="Views\KETQUAs\Create.cshtml" />
+    <Content Include="Views\KETQUAs\Delete.cshtml" />
+    <Content Include="Views\KETQUAs\Edit.cshtml" />
+    <Content Include="Views\KETQUAs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

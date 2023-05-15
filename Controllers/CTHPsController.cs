@@ -22,13 +22,14 @@ namespace QuanLyHocSinh.Controllers
             var maIntNew = maInt + 1;
             return $"HP{maIntNew:D8}";
         }
-        public ActionResult Index(string maHS)
+        public ActionResult Index(string maHS, string err = "")
         {
             if(maHS == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var cTHPs = db.CTHPs.Include(c => c.GIAOVIEN).Include(c => c.HOCSINH).Include(c => c.MONHOC).Include(c => c.NAMHOC)
                 .Where(c => c.HOCSINH.MaHS == maHS);
             ViewBag.MaHS = maHS;
+            ViewBag.Error = err;
             return View(cTHPs.ToList());
         }
 
@@ -115,6 +116,9 @@ namespace QuanLyHocSinh.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaHS = cTHP.MaHS;
+            if(db.KETQUAs.Any(kq => kq.MaCTHP == cTHP.MaCTHP))
+                return RedirectToAction("Index", new { maHS = cTHP.MaHS, err = "Phải xóa kết quả của học phần này trước khi xóa học phần!" });
             return View(cTHP);
         }
 
@@ -124,9 +128,10 @@ namespace QuanLyHocSinh.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             CTHP cTHP = db.CTHPs.Find(id);
+            string ma = cTHP.MaHS;
             db.CTHPs.Remove(cTHP);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {maHS = ma});
         }
 
         protected override void Dispose(bool disposing)

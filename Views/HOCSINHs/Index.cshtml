@@ -50,7 +50,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Tìm kiếm" class="btn btn-outline-dark" />
-            </div>
+            </div> 
         </div>
     }
     @using (Html.BeginForm("ExportListHocSinhToExcel", "HOCSINHs", FormMethod.Post))
@@ -101,7 +101,7 @@
             @Html.DisplayNameFor(model => model.SDT)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LOP.MaLop)
+            Lớp
         </th>
         <th>
             Họ tên phụ huynh
@@ -151,8 +151,9 @@
                 @Html.DisplayFor(modelItem => item.PHUHUYNH.HoPH) @Html.DisplayFor(modelItem => item.PHUHUYNH.TenPH)
             </td>
             <td>
-                @Html.ActionLink("Kế hoạch học tập", "Index", "CTHPs", new { maHS = item.MaHS}, new {}) |
-                @Html.ActionLink("Sửa đổi", "Edit", new { id = item.MaHS }) |
+                @Html.ActionLink("Kết quả", "Index", "KETQUAs", new { maHS = item.MaHS, maNH = ViewBag.MaNH }, new { }) |
+                @Html.ActionLink("Kế hoạch", "Index", "CTHPs", new { maHS = item.MaHS }, new { }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaHS }) |
                 @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHS }) |
                 @Html.ActionLink("Xóa", "Delete", new { id = item.MaHS })
             </td>

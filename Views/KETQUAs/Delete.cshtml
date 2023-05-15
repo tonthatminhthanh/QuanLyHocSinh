@@ -1,0 +1,62 @@
+﻿@model QuanLyHocSinh.Models.KETQUA
+
+@{
+    ViewBag.Title = "Xóa đánh giá";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Bạn có chắc là bạn muốn xóa?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemQT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemQT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diem1T)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diem1T)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemKT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemKT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemTB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CTHP.MaHS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTHP.MaHS)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Quay lại", "Index", new { maHS = ViewBag.MaHS, maNH = ViewBag.MaNH }, null)
+        </div>
+    }
+</div>

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<QuanLyHocSinh.Models.KETQUA>
+
+@{
+    ViewBag.Title = "Kết quả học tập của học sinh mã số " + ViewBag.MaHS;
+    int stt = 0;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Thêm", "Create", new { maHS = ViewBag.MaHS }, null)
+</p>
+@using (Html.BeginForm("Index", "KETQUAs", FormMethod.Post))
+{
+    <dt><label for="maNH" class="control-label col-md-2">Năm học</label></dt>
+    <dd>
+        <div class="col-md-10">
+            @Html.DropDownList("maNH", (SelectList)ViewBag.MaNH, null, htmlAttributes: new { @class = "form-control" })
+            <input type="hidden" name="maHS" value="@ViewBag.MaHS" />
+        </div>
+    </dd>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Tìm kiếm" class="btn btn-outline-dark" />
+        </div>
+    </div>
+}
+@using (Html.BeginForm("ExportListKQToExcel", "KETQUAs", FormMethod.Post))
+{
+    for (int j = 0; j < Model.Count(); j++)
+    {
+
+        @Html.HiddenFor(m => m.ToList()[j].MaKQ);
+        @Html.HiddenFor(m => m.ToList()[j].MaCTHP);
+        @Html.HiddenFor(m => m.ToList()[j].DiemQT);
+        @Html.HiddenFor(m => m.ToList()[j].Diem1T);
+        @Html.HiddenFor(m => m.ToList()[j].DiemKT);
+        @Html.HiddenFor(m => m.ToList()[j].DiemTB);
+    }
+    <input type="hidden" name="maHS" value="@ViewBag.MaHS" />
+    <input type="submit" value="Xuất file Excel" class="btn btn-outline-dark" />
+}
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaCTHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CTHP.MONHOC.TenMH)
+        </th>
+        <th>
+            Năm học
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiemQT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diem1T)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiemKT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiemTB)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        stt++;
+        <tr>
+            <td>@stt</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCTHP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CTHP.MONHOC.TenMH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CTHP.NAMHOC.NamBatDau) - @Html.DisplayFor(modelItem => item.CTHP.NAMHOC.NamKetThuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemQT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diem1T)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemKT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemTB)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaKQ }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaKQ })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Quay lại", "Index", "HOCSINHs")
+</div>

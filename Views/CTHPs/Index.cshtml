@@ -10,6 +10,9 @@
 <p>
     @Html.ActionLink("Thêm môn học", "Create", new {maHS = ViewBag.MaHS}, null)
 </p>
+<div style="color: red">
+    @ViewBag.Error
+</div>
 <table class="table">
     <tr>
         <th>STT</th>

@@ -11,7 +11,7 @@ using Microsoft.Ajax.Utilities;
 using QuanLyHocSinh.Models;
 
 namespace QuanLyHocSinh.Controllers
-{
+{ 
     public class HOCSINHsController : Controller
     {
         private QLHSHVTEntities db = new QLHSHVTEntities();
@@ -91,6 +91,7 @@ namespace QuanLyHocSinh.Controllers
             var hOCSINHs = db.HOCSINHs.Include(h => h.LOP).Include(h => h.PHUHUYNH).Include(h => h.QUOCTICH).Include(h => h.TONGIAO);
 
             ViewBag.MaLop = new SelectList(db.LOPs, "MaLop", "MaLop");
+            ViewBag.MaNH = db.NAMHOCs.FirstOrDefault().MaNH;
             return View(hOCSINHs.ToList());
         }
         [HttpPost]
@@ -121,6 +122,7 @@ namespace QuanLyHocSinh.Controllers
                 ViewBag.MaPH = pHUHUYNH[0].HoPH + " " + pHUHUYNH[0].TenPH;
             }
             ViewBag.MaLop = new SelectList(db.LOPs, "MaLop", "MaLop");
+            ViewBag.MaNH = db.NAMHOCs.FirstOrDefault().MaNH;
             return View(hocSinhs.ToList());
         }
 
