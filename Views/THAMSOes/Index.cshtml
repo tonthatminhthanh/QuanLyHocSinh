@@ -1,0 +1,45 @@
+﻿@model IEnumerable<QuanLyHocSinh.Models.THAMSO>
+
+@{
+    ViewBag.Title = "Danh sách tham số";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên tham số
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaTriToiThieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaTriToiDa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if(item.MaThamSo == "HPHI")
+                {
+                    <td>Quy định học phí</td>
+        }
+        else
+                {
+                    <td>Quy định tuổi</td>
+                }
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaTriToiThieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaTriToiDa)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.MaThamSo })
+        </td>
+    </tr>
+}
+
+</table>

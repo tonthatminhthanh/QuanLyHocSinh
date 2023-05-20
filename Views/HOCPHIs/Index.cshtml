@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QuanLyHocSinh.Models.HOCPHI>
+
+@{
+    ViewBag.Title = "Học phí của học sinh mã " + ViewBag.MaHS;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Thêm học phí", "Create", new {id = ViewBag.MaHS})
+</p>
+<table class="table">
+    <tr>
+        <th>Năm học</th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOAIHOCPHI.TenLHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DONGIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayThongBao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDongTien)
+        </th>
+        <th>Tương tác</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMHOC.NamBatDau) - @Html.DisplayFor(modelItem => item.NAMHOC.NamKetThuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOAIHOCPHI.TenLHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DONGIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayThongBao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDongTien)
+        </td>
+        <td>
+            @if (item.NgayDongTien == null)
+            {
+                <div>
+                    @Html.ActionLink("Đóng tiền", "DongHocPhi", new { id = item.MaHocPhi }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaHocPhi })
+                </div>
+            }
+        </td>
+    </tr>
+}
+</table>
+<div>
+    @Html.ActionLink("Quay lại", "Index", "HOCSINHs")
+</div>
