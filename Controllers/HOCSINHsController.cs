@@ -168,12 +168,20 @@ namespace QuanLyHocSinh.Controllers
             string savePath = Server.MapPath("/Images/" + fileName);
             anh.SaveAs(savePath);
             hOCSINH.AnhHS = fileName;
-
-            if (ModelState.IsValid)
+            int age = DateTime.Now.Year - hOCSINH.NgaySinh.Year;
+            var qdTuoi = db.THAMSOes.FirstOrDefault(t => t.MaThamSo == "TUOI");
+            if (age < qdTuoi.GiaTriToiThieu || age > qdTuoi.GiaTriToiDa)
             {
-                db.HOCSINHs.Add(hOCSINH);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Error = "Tuổi phải lớn hơn hoặc bằng " + qdTuoi.GiaTriToiThieu + " và nhỏ hơn hoặc bằng " + qdTuoi.GiaTriToiDa;
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.HOCSINHs.Add(hOCSINH);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.MaLop = new SelectList(db.LOPs, "MaLop", "MaLop", hOCSINH.MaLop);

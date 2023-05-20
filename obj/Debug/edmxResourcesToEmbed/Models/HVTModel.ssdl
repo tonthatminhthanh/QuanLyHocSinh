@@ -131,8 +131,8 @@
       <PropertyRef Name="MaThamSo" />
     </Key>
     <Property Name="MaThamSo" Type="varchar" MaxLength="4" Nullable="false" />
-    <Property Name="HocPhiToiThieu" Type="int" Nullable="false" />
-    <Property Name="HocPhiToiDa" Type="int" Nullable="false" />
+    <Property Name="GiaTriToiThieu" Type="int" Nullable="false" />
+    <Property Name="GiaTriToiDa" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TONGIAO">
     <Key>

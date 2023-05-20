@@ -134,9 +134,9 @@
     <EntitySetMapping Name="THAMSOes">
       <EntityTypeMapping TypeName="QLHSHVTModel.THAMSO">
         <MappingFragment StoreEntitySet="THAMSO">
+          <ScalarProperty Name="GiaTriToiDa" ColumnName="GiaTriToiDa" />
+          <ScalarProperty Name="GiaTriToiThieu" ColumnName="GiaTriToiThieu" />
           <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
-          <ScalarProperty Name="HocPhiToiThieu" ColumnName="HocPhiToiThieu" />
-          <ScalarProperty Name="HocPhiToiDa" ColumnName="HocPhiToiDa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

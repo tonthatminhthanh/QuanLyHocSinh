@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QLHocSinhHVT.Models
+namespace QuanLyHocSinh.Models
 {
     [Authorize]
     public class UserRolesController : Controller

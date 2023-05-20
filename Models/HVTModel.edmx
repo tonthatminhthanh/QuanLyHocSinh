@@ -136,8 +136,8 @@
             <PropertyRef Name="MaThamSo" />
           </Key>
           <Property Name="MaThamSo" Type="varchar" MaxLength="4" Nullable="false" />
-          <Property Name="HocPhiToiThieu" Type="int" Nullable="false" />
-          <Property Name="HocPhiToiDa" Type="int" Nullable="false" />
+          <Property Name="GiaTriToiThieu" Type="int" Nullable="false" />
+          <Property Name="GiaTriToiDa" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TONGIAO">
           <Key>
@@ -558,8 +558,8 @@
             <PropertyRef Name="MaThamSo" />
           </Key>
           <Property Name="MaThamSo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HocPhiToiThieu" Type="Int32" Nullable="false" />
-          <Property Name="HocPhiToiDa" Type="Int32" Nullable="false" />
+          <Property Name="GiaTriToiThieu" Type="Int32" Nullable="false" />
+          <Property Name="GiaTriToiDa" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TONGIAO">
           <Key>
@@ -974,10 +974,10 @@
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="QLHSHVTModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="GiaTriToiDa" ColumnName="GiaTriToiDa" />
+                <ScalarProperty Name="GiaTriToiThieu" ColumnName="GiaTriToiThieu" />
                 <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
-                <ScalarProperty Name="HocPhiToiThieu" ColumnName="HocPhiToiThieu" />
-                <ScalarProperty Name="HocPhiToiDa" ColumnName="HocPhiToiDa" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TONGIAOs">

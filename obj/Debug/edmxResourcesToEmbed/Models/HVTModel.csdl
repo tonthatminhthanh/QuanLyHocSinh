@@ -151,8 +151,8 @@
       <PropertyRef Name="MaThamSo" />
     </Key>
     <Property Name="MaThamSo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="HocPhiToiThieu" Type="Int32" Nullable="false" />
-    <Property Name="HocPhiToiDa" Type="Int32" Nullable="false" />
+    <Property Name="GiaTriToiThieu" Type="Int32" Nullable="false" />
+    <Property Name="GiaTriToiDa" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="TONGIAO">
     <Key>

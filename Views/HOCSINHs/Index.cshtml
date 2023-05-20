@@ -106,7 +106,8 @@
         <th>
             Họ tên phụ huynh
         </th>
-        <th></th>
+        <th>Đóng học phí đầy đủ</th>
+        <th>Tương tác</th>
     </tr>
 
     @foreach (var item in Model)
@@ -151,6 +152,24 @@
                 @Html.DisplayFor(modelItem => item.PHUHUYNH.HoPH) @Html.DisplayFor(modelItem => item.PHUHUYNH.TenPH)
             </td>
             <td>
+                @if (item.HOCPHIs.Any(hp => hp.NgayDongTien == null))
+                {
+                    <div>❌</div>
+                }
+                else
+                {
+                    if (!item.HOCPHIs.Any())
+                    {
+                        <div>❓</div>
+                    }
+                    else
+                    {
+                        <div>✔️</div>
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Học phí", "Index", "HOCPHIs", new { id = item.MaHS, maNH = ViewBag.MaNH }, null) |
                 @Html.ActionLink("Kết quả", "Index", "KETQUAs", new { maHS = item.MaHS, maNH = ViewBag.MaNH }, new { }) |
                 @Html.ActionLink("Kế hoạch", "Index", "CTHPs", new { maHS = item.MaHS }, new { }) |
                 @Html.ActionLink("Sửa", "Edit", new { id = item.MaHS }) |
