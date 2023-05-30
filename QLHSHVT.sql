@@ -7,9 +7,12 @@ USE QLHSHVT;
 CREATE TABLE THAMSO
 (
 	MaThamSo VARCHAR(4) PRIMARY KEY,
-	HocPhiToiThieu INT NOT NULL,
-	HocPhiToiDa INT NOT NULL
+	GiaTriToiThieu INT NOT NULL,
+	GiaTriToiDa INT NOT NULL
 )
+
+INSERT INTO THAMSO VALUES('HPHI',300000,650000)
+INSERT INTO THAMSO VALUES('TUOI',14,18)
 
 CREATE TABLE GIAOVIEN
 (
@@ -79,6 +82,17 @@ INSERT INTO PHUHUYNH VALUES('PH0006','Nguyen Ngoc','Lam','012569686','nnl1953@gm
 INSERT INTO PHUHUYNH VALUES('PH0007','Lam Minh','Ti','0862753435','lmt1966@gmail.com','Cong Nhan')
 INSERT INTO PHUHUYNH VALUES('PH0008','Ton Thu','Minh','0728185184','ttm1927@gmail.com','Xay Dung')
 INSERT INTO PHUHUYNH VALUES('PH0009','Nguyen Le','Khanh','0223571773','nlk1951@gmail.com','Noi tro')
+INSERT INTO PHUHUYNH VALUES('PH0010','Tran Thi','Mai','0987654321','ttm1990@gmail.com','Giao Vien')
+INSERT INTO PHUHUYNH VALUES('PH0011','Pham Thi','Huong','0912345678','pth1995@gmail.com','Y Ta')
+INSERT INTO PHUHUYNH VALUES('PH0012','Le Thi','My','0909090909','ltm1988@gmail.com','Kinh Doanh')
+INSERT INTO PHUHUYNH VALUES('PH0013','Tran Thi','Hoa','0911111111','tth1980@gmail.com','Bac Si')
+INSERT INTO PHUHUYNH VALUES('PH0014','Nguyen Thi','Trang','0888888888','ntt1992@gmail.com','Ky Su')
+INSERT INTO PHUHUYNH VALUES('PH0015','Hoang Thi','Phuong','0977777777','htp1998@gmail.com','Sinh Vien')
+INSERT INTO PHUHUYNH VALUES('PH0016','Nguyen Van','Ti','0976543210','nvn1991@gmail.com','Giao Vien')
+INSERT INTO PHUHUYNH VALUES('PH0017','Le Thi','Anh','0987654321','lta1996@gmail.com','Y Ta')
+INSERT INTO PHUHUYNH VALUES('PH0018','Tran Thi','Duyen','0999999999','ttm1989@gmail.com','Kinh Doanh')
+INSERT INTO PHUHUYNH VALUES('PH0019','Hoang Van','Cuong','0900000000','hvh1981@gmail.com','Bac Si')
+INSERT INTO PHUHUYNH VALUES('PH0020','Nguyen Thi','Chau','0912345678','ntc1990@gmail.com','Giáo viên')
 
 CREATE TABLE TONGIAO 
 (
@@ -144,6 +158,27 @@ INSERT INTO HOCSINH VALUES('HS000006','Le Ngoc','Tan','placeholder.png',1,'B1','
 INSERT INTO HOCSINH VALUES('HS000007','Tu Ngoc','Chuong','placeholder.png',1,'B2','PH0007','20020622','0441961962','chuong.tn.62cntt@ntu.edu.vn','52/7 duong 2 thang 4','Nghe An','TG07','QT007')
 INSERT INTO HOCSINH VALUES('HS000008','Nguyen Quoc','Khanh','placeholder.png',1,'C1','PH0008','20020915','0619169153','khanh.nq.62cntt@ntu.edu.vn','366/5 duong 2 thang 4','Sa Pa','TG08','QT008')
 INSERT INTO HOCSINH VALUES('HS000009','Dam Quan','Tuong','placeholder.png',1,'C2','PH0009','20021002','0827516816','tuong.dq.62cntt@ntu.edu.vn','314/7 duong 2 thang 4','Hue','TG09','QT009')
+INSERT INTO HOCSINH VALUES('HS000010','Pham Truong','Nghiem','placeholder.png',1,'B2','PH0010','20020222','0929798170','nghiem.pt.62cntt@ntu.edu.vn','444/4 duong 2 thang 4','Nha Trang','TG01','QT001')
+INSERT INTO HOCSINH VALUES('HS000011','Bui Quang','Huy','placeholder.png',1,'B1','PH0011','20020330','0978129693','huy.bq.62cntt@ntu.edu.vn','333/3 duong 2 thang 4','Nghe An','TG02','QT002')
+INSERT INTO HOCSINH VALUES('HS000012','Nguyen Thai Tan','Hung','placeholder.png',1,'A2','PH0012','20020502','0182657296','hung.ntt.62cntt@ntu.edu.vn','222/2 duong 2 thang 4','Ha Noi','TG03','QT003')
+INSERT INTO HOCSINH VALUES('HS000013','Le Gia','Hung','placeholder.png',1,'A2','PH0013','20020707','0192659160','hung.lg.62cntt@ntu.edu.vn','111/1 duong 2 thang 4','Thanh Hoa','TG04','QT004')
+INSERT INTO HOCSINH VALUES('HS000014','Nguyen Ngoc Duc','Nhong','placeholder.png',1,'A1','PH0014','20021122','0215121717','nhong.nnd.62cntt@ntu.edu.vn','555/5 duong 2 thang 4','Sa pa','TG05','QT005')
+INSERT INTO HOCSINH VALUES('HS000015','Hoang Tuan','Kiet','placeholder.png',1,'C1','PH0015','20020131','0124050060','kiet.ht.62cntt@ntu.edu.vn','122/9 duong 2 thang 4','Ninh Hoa','TG06','QT006')
+INSERT INTO HOCSINH VALUES('HS000016','Nguyen Van','Dung','placeholder.png',1,'A1','PH0010','20021010','0912345678','dung.nv.62cntt@ntu.edu.vn','123/4 Nguyen Van Linh','Khanh Hoa','TG01','QT001')
+INSERT INTO HOCSINH VALUES('HS000017','Tran Thi','Thu','placeholder.png',0,'A2','PH0011','20020105','0987654321','thu.tt.62cntt@ntu.edu.vn','456/7 Tran Phu','Da Nang','TG02','QT002')
+INSERT INTO HOCSINH VALUES('HS000018','Le Van','Hung','placeholder.png',1,'A2','PH0012','20020320','0909090909','hung.lv.62cntt@ntu.edu.vn','789/10 Nguyen Van Cu','Quang Nam','TG03','QT003')
+INSERT INTO HOCSINH VALUES('HS000019','Pham Thi','My','placeholder.png',0,'B1','PH0013','20020415','0888888888','my.pt.62cntt@ntu.edu.vn','12/3 Le Loi','Hanoi','TG04','QT004')
+INSERT INTO HOCSINH VALUES('HS000020','Nguyen Van','Tien','placeholder.png',1,'B1','PH0014','20020501','0977777777','tien.nv.62cntt@ntu.edu.vn','345/6 Nguyen Trai','Khanh Hoa','TG05','QT005')
+INSERT INTO HOCSINH VALUES('HS000021','Hoang Thi','Yen','placeholder.png',0,'B2','PH0015','20020616','0966666666','yen.ht.62cntt@ntu.edu.vn','567/8 Tran Hung Dao','Quang Ngai','TG06','QT006')
+INSERT INTO HOCSINH VALUES('HS000022','Tran Van','Tu','placeholder.png',1,'C1','PH0016','20020711','0955555555','tu.tv.62cntt@ntu.edu.vn','789/10 Le Lai','Da Nang','TG07','QT007')
+INSERT INTO HOCSINH VALUES('HS000023','Nguyen Thi','Kim','placeholder.png',0,'C1','PH0017','20020826','0944444444','kim.nt.62cntt@ntu.edu.vn','123/4 Phan Chu Trinh','Khanh Hoa','TG08','QT008')
+INSERT INTO HOCSINH VALUES('HS000024','Le Van','Hai','placeholder.png',1,'C2','PH0018','20021021','0933333333','hai.lv.62cntt@ntu.edu.vn','456/7 Nguyen Dinh Chieu','Ninh Thuan','TG09','QT009')
+INSERT INTO HOCSINH VALUES('HS000025','Tran Thi','Lan','placeholder.png',0,'A1','PH0019','20021206','0922222222','lan.tt.62cntt@ntu.edu.vn','789/10 Tran Phu','Quang Tri','TG09','QT010')
+INSERT INTO HOCSINH VALUES('HS000026','Pham Van','Huong','placeholder.png',1,'A1','PH0020','20021201','0911111111','huong.pv.62cntt@ntu.edu.vn','12/3 Nguyen Hue','Da Nang','TG01','QT001')
+INSERT INTO HOCSINH VALUES('HS000027','Nguyen Thi','Quyen','placeholder.png',0,'A2','PH0019','20020101','0900000000','quyen.nt.62cntt@ntu.edu.vn','345/6 Le Loi','Binh Dinh','TG02','QT002')
+INSERT INTO HOCSINH VALUES('HS000028','Tran Van','Truong','placeholder.png',1,'B1','PH0020','20020202','0988888888','truong.tv.62cntt@ntu.edu.vn','567/8 Nguyen Trai','Quang Nam','TG03','QT003')
+INSERT INTO HOCSINH VALUES('HS000029','Le Thi','Nga','placeholder.png',0,'B1','PH0013','20020303','0966666666','nga.lt.62cntt@ntu.edu.vn','789/10 Tran Hung Dao','Hanoi','TG04','QT004')
+INSERT INTO HOCSINH VALUES('HS000030','Pham Van','Phuc','placeholder.png',1,'B2','PH0020','20020404','0944444444','phuc.pv.62cntt@ntu.edu.vn','123/4 Le Lai','Da Nang','TG05','QT005')
 
 CREATE TABLE MONHOC
 (
@@ -180,8 +215,9 @@ CREATE TABLE NAMHOC
 	NamBatDau INT NOT NULL,
 	NamKetThuc INT NOT NULL,
 )
-
-INSERT INTO NAMHOC VALUES('NH0001',2022,2023)
+INSERT INTO NAMHOC VALUES('NH0001',2021,2022)
+INSERT INTO NAMHOC VALUES('NH0002',2022,2023)
+INSERT INTO NAMHOC VALUES('NH0003',2023,2024)
 
 CREATE TABLE LOAIHOCPHI
 (
