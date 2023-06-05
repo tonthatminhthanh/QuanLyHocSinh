@@ -15,8 +15,9 @@ namespace QuanLyHocSinh.Models
 
     public partial class KETQUA
     {
+        [DisplayName("Mã kết quả")]
         public string MaKQ { get; set; }
-        [DisplayName("Mã học phần đăng ký")]
+        [DisplayName("Mã học phần")]
         public string MaCTHP { get; set; }
         [DisplayName("Điểm quá trình")]
         public double DiemQT { get; set; }

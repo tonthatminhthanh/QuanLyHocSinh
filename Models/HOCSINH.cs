@@ -12,7 +12,6 @@ namespace QuanLyHocSinh.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class HOCSINH
     {
@@ -28,7 +27,7 @@ namespace QuanLyHocSinh.Models
         public string HoHS { get; set; }
         [DisplayName("Tên học sinh")]
         public string TenHS { get; set; }
-        [DisplayName("Ảnh")]
+        [DisplayName("Ảnh đại diện")]
         public string AnhHS { get; set; }
         [DisplayName("Giới tính")]
         public bool GioiTinh { get; set; }
@@ -38,9 +37,7 @@ namespace QuanLyHocSinh.Models
         public string MaPH { get; set; }
         [DisplayName("Ngày sinh")]
         public System.DateTime NgaySinh { get; set; }
-        [DisplayName("SĐT")]
         public string SDT { get; set; }
-        [DisplayName("Email")]
         public string Email { get; set; }
         [DisplayName("Địa chỉ")]
         public string DiaChi { get; set; }

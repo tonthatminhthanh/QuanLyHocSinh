@@ -50,7 +50,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Tìm kiếm" class="btn btn-outline-dark" />
-            </div> 
+            </div>
         </div>
     }
     @using (Html.BeginForm("ExportListHocSinhToExcel", "HOCSINHs", FormMethod.Post))
@@ -80,25 +80,25 @@
             STT
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaHS)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MaHS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoHS)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().HoHS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenHS)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().TenHS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AnhHS)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AnhHS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GioiTinh)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().GioiTinh)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgaySinh)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NgaySinh)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SDT)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SDT)
         </th>
         <th>
             Lớp
@@ -183,3 +183,5 @@
 <div>
     Tổng số học sinh: @Model.Count()
 </div>
+
+<br />

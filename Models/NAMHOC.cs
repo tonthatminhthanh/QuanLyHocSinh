@@ -21,7 +21,7 @@ namespace QuanLyHocSinh.Models
             this.CTHPs = new HashSet<CTHP>();
             this.HOCPHIs = new HashSet<HOCPHI>();
         }
-    
+        [DisplayName("Năm học")]
         public string MaNH { get; set; }
         [DisplayName("Năm bắt đầu")]
         public int NamBatDau { get; set; }

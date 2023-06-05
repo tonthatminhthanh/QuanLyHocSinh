@@ -24,6 +24,7 @@ namespace QuanLyHocSinh.Models
         public string MaLHP { get; set; }
         [DisplayName("Loại học phí")]
         public string TenLHP { get; set; }
+        [DisplayName("Đơn giá")]
         public int DONGIA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

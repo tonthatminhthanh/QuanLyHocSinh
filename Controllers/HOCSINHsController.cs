@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using OfficeOpenXml;
 using Microsoft.Ajax.Utilities;
 using QuanLyHocSinh.Models;
+using PagedList;
 
 namespace QuanLyHocSinh.Controllers
 { 
@@ -86,12 +87,13 @@ namespace QuanLyHocSinh.Controllers
         }
 
         [Authorize(Roles = "User")]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             var hOCSINHs = db.HOCSINHs.Include(h => h.LOP).Include(h => h.PHUHUYNH).Include(h => h.QUOCTICH).Include(h => h.TONGIAO);
 
             ViewBag.MaLop = new SelectList(db.LOPs, "MaLop", "MaLop");
             ViewBag.MaNH = db.NAMHOCs.FirstOrDefault().MaNH;
+            int pageSize = 5;
             return View(hOCSINHs.ToList());
         }
         [HttpPost]

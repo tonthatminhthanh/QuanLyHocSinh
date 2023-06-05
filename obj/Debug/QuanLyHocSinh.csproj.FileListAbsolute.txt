@@ -79,3 +79,7 @@ D:\Documents\Projects\ASPNET\QuanLyHocSinh\obj\Debug\QuanLyHocSinh.dll
 D:\Documents\Projects\ASPNET\QuanLyHocSinh\obj\Debug\QuanLyHocSinh.pdb
 D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\EPPlus.xml
 D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\PagedList.dll
+D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\PagedList.Mvc.dll
+D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\PagedList.xml
+D:\Documents\Projects\ASPNET\QuanLyHocSinh\bin\PagedList.Mvc.xml

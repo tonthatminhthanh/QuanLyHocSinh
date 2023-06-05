@@ -20,14 +20,15 @@ namespace QuanLyHocSinh.Models
         {
             this.KETQUAs = new HashSet<KETQUA>();
         }
-        [DisplayName("Mã học phần đăng ký")]
+        [DisplayName("Mã học phần")]
         public string MaCTHP { get; set; }
+        [DisplayName("Học sinh")]
         public string MaHS { get; set; }
         [DisplayName("Môn học")]
         public string MaMH { get; set; }
         [DisplayName("Năm học")]
         public string MaNH { get; set; }
-        [DisplayName("Giáo viên giảng dạy")]
+        [DisplayName("Giáo viên")]
         public string MaGV { get; set; }
     
         public virtual GIAOVIEN GIAOVIEN { get; set; }

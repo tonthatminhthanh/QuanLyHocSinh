@@ -10,6 +10,7 @@ using QuanLyHocSinh.Models;
 
 namespace QuanLyHocSinh.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class THAMSOesController : Controller
     {
         private QLHSHVTEntities db = new QLHSHVTEntities();

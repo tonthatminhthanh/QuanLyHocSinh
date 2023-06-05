@@ -15,8 +15,11 @@ namespace QuanLyHocSinh.Models
 
     public partial class HOCPHI
     {
+        [DisplayName("Học phí")]
         public string MaHocPhi { get; set; }
+        [DisplayName("Năm học")]
         public string MaNH { get; set; }
+        [DisplayName("Học sinh")]
         public string MaHS { get; set; }
         [DisplayName("Đơn giá")]
         public int DONGIA { get; set; }

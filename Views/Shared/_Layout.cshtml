@@ -9,19 +9,22 @@
     @Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
-    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-brand text-light bg-primary">
         <div class="container">
-            @Html.ActionLink("Quản lý học sinh Hoàng Văn Thụ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home")"> <img style="width:70px ; height:70px ; border-radius:50%" src="~/Asset/icon.png" /></a>
+            @*@Html.ActionLink("" , "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Quản lý học sinh", "Index", "HOCSINHs", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Quản lý năm học", "Index", "NAMHOCs", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Quản lý thành viên", "Index", "UserRoles", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Quản lý tham số", "Index", "THAMSOes", new { area = "" }, new { @class = "nav-link" })</li>
+                    
+               <li>@Html.ActionLink("Học sinh", "Index", "HOCSINHs", new { area = "" }, new { @class = "nav-link text-light" })</li>
+
+                    <li>@Html.ActionLink("Năm học", "Index", "NAMHOCs", new { area = "" }, new { @class = "nav-link text-light" })</li>
+                    <li>@Html.ActionLink("Thành viên", "Index", "UserRoles", new { area = "" }, new { @class = "nav-link text-light" })</li>
+                    <li>@Html.ActionLink("Tham số", "Index", "THAMSOes", new { area = "" }, new { @class = "nav-link text-light" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -31,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Chương trình quản lý học sinh THPT Hoàng Văn Thụ</p>
         </footer>
     </div>
 

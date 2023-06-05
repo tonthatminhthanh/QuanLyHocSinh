@@ -26,7 +26,6 @@ namespace QuanLyHocSinh.Models
         public string TenMH { get; set; }
         [DisplayName("Ngành")]
         public string MaNganh { get; set; }
-        [DisplayName("Khối")]
         public string MaKhoi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
